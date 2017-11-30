@@ -1,0 +1,19 @@
+/* Empty. Add your own CSS if you like */
+.tachado {
+    color: grey;
+    text-decoration: line-through;
+    font-style: italic;
+}
+.simple {
+    color: black;
+    font-weight: bold;
+}
+
+/* mensajes de error */
+.error {
+    padding: 10px 16px;
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    vertical-align: middle;
+}

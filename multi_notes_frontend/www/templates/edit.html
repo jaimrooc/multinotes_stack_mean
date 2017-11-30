@@ -1,0 +1,53 @@
+<ion-view view-title="Editar Nota">
+    <ion-content>
+        <div class="list card">
+            <div class="item-input item-floating-label item-icon-right">
+                <span class="input-label positive">Titulo</span>
+                <input name="titulo" type="text" ng-model="nota.titulo" placeholder="Titulo">
+                <i ng-if="nota.tipoNota === 'check'" class="icon ion-ios-list-outline"></i>
+                <i ng-if="nota.tipoNota === 'text'" class="icon ion-document-text"></i>
+            </div>
+        </div>
+
+        <div ng-switch on="nota.tipoNota">
+            <!-- TIPO: texto -->
+            <div ng-switch-when="text">
+                <label class="item item-input item-stacked-label">
+                    <textarea name="desc" ng-model="nota.descripcion" placeholder="Agregar texto" elastic></textarea>
+                </label>
+            </div>
+            <!-- TIPO: lista -->
+            <div ng-switch-when="check">
+                <div class="list card">
+                    <h4 class="positive padding">Lista de tareas [{{nota.listaNotas.length}}]</h4>
+
+                    <div class="list">
+                      <div class="item item-input-inset">
+                        <label class="item-input-wrapper">
+                          <input type="text" placeholder="Agregar Tarea" ng-model="nota.descripcion">
+                        </label>
+                        <button class="button button-small button-balanced" ng-click="notaListaAdd()">
+                          <i class="ion-plus-round"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <ion-list>
+                      <ion-item class="item-remove-animate item-icon-right" ng-repeat="notaDeLista in nota.listaNotas" ng-click="cambiarEstadoTariea($index)">
+                          <i class="icon ion-ios-arrow-left"></i>
+                          <span ng-class="notaDeLista.estaChequeado? 'tachado' : 'simple'">
+                            {{notaDeLista.desc}}
+                          </span>
+                          <ion-option-button class="button-assertive icon-left ion-trash-a" ng-click="notaListaRemove($index)">Eliminar</ion-option-button>
+                      </ion-item>
+                    </ion-list>
+                </div>
+            </div>
+            <!-- TIPO: sin tipo -->
+            <div ng-switch-default>Error!</div>
+        </div>
+
+    </ion-content>
+    <ion-footer-bar class="bar-dark">
+        <a class="button button-positive icon-left ion-compose" ng-click="save()">Guardar</a>
+    </ion-footer-bar>
+</ion-view>
