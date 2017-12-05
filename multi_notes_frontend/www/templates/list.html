@@ -1,25 +1,16 @@
 <ion-view view-title="Lista de Notas">
     <ion-content ng-controller="ListCtrl">
         <ion-list>
-            <ion-item class="item-remove-animate item-icon-left item-icon-right" href="#/edit/{{nota.id}}" ng-repeat="nota in notas">
-
-                <i ng-if="nota.tipoNota === 'check'" class="icon ion-ios-list-outline"></i>
-                <i ng-if="nota.tipoNota === 'text'" class="icon ion-document-text"></i>
-                {{nota.titulo}}
-                <span ng-if="nota.tipoNota === 'check'">[{{nota.listaNotas.length}}]</span>
-                <i class="icon ion-ios-arrow-right"></i>
-
-                <ion-option-button class="button-assertive icon-left ion-trash-a" ng-click="remove(nota.id)">Eliminar</ion-option-button>
+            <ion-item class="item-remove-animate item-icon-left item-icon-right" href="#/edit/{{nota._id}}" ng-repeat="nota in notest">
+                {{nota.title}}
+                
+                <ion-option-button class="button-assertive icon-left ion-trash-a" ng-click="remove(nota._id)">Eliminar</ion-option-button>
             </ion-item>
-        </ion-list>
 
-        <div ng-if="notas.length === 0">
+        </ion-list>
+        <div ng-if="notest.length === 0">
             <h4 style="text-align:center;" class="positive ion-information-circled"> Aun no existen notas</h4>
         </div>
-
-
-        <ion-footer-bar class="bar-dark">
-            <a class="button button-positive icon-left ion-compose" ng-click="showPopup()">Agregar</a>
-        </ion-footer-bar>
+        <a class="button button-positive icon-left ion-compose" ng-click="showPopup()">Agregar</a>
     </ion-content>
 </ion-view>
